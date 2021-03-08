@@ -1,110 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/body.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script src="./node_modules/vue/dist/vue.min.js"></script>
-  <script src="./node_modules/axios/dist/axios.min.js"></script>
-  <title>Aqua Player</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/body.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="./node_modules/vue/dist/vue.min.js"></script>
+        <script src="./node_modules/axios/dist/axios.min.js"></script>
+        <title>Aqua Player</title>
+    </head>
 
-<body>
-  <div id="slam" class="container-fluid vw-100 vh-100 slam">
-    <div>
-      <div class="bg-dark row d-flex justify-content-end drag">
-        <button id="appMin" class="btn btn-dark titlebar-button min nodrag">
-          <img src="./assets/minimize.svg" />
-        </button>
-        <button id="appExit" class="btn btn-dark titlebar-button exit nodrag">
-          <img src="./assets/x.svg" />
-        </button>
-      </div>
-      <a href="index.html"><img src="./assets/back.svg" alt="Go Back" /></a>
-      <h1 class="text-center mt-1">Slam!</h1>
-      <div class="image d-flex ">
-        <img v-bind:src="coverImage" class="image-thumbnail mx-auto w-50 rounded" />
-      </div>
-      <div class="text-bold text-center mt-5 ">{{ songName }}</div>
-      <div class="text-right text-bold text-center ">{{ artistName }}</div>
-      <div class="text-right mt-5 text-center ">DJ: {{ presenterName }}</div>
-      <div class="d-flex ">
-        <button v-on:click="player" class="btn btn-outline-dark btn-lg mx-auto mt-4">
-          <img v-bind:src="currentButton">
-        </button>
-      </div>
+    <body>
+        <div id="slam" class="container-fluid vw-100 vh-100 slam">
+            <div>
+                <div class="bg-dark row d-flex justify-content-end drag">
+                    <button id="appMin" class="btn btn-dark titlebar-button min nodrag">
+                        <img src="./assets/minimize.svg"/>
+                    </button>
+                    <button id="appExit" class="btn btn-dark titlebar-button exit nodrag">
+                        <img src="./assets/x.svg"/>
+                    </button>
+                </div>
+                <a href="index.html"><img src="./assets/back.svg" alt="Go Back"/></a>
+                <h1 class="text-center mt-1">Slam!</h1>
+                <div class="image d-flex ">
+                    <img v-bind:src="coverImage" class="image-thumbnail mx-auto w-50 rounded"/>
+                </div>
+                <div class="text-bold text-center mt-5 ">{{ songName }}</div>
+                <div class="text-right text-bold text-center ">{{ artistName }}</div>
+                <div class="text-right mt-5 text-center ">DJ: {{ presenterName }}</div>
+                <div class="d-flex ">
+                    <button v-on:click="player" class="btn btn-outline-dark btn-lg mx-auto mt-4">
+                        <img v-bind:src="currentButton">
+                    </button>
+                </div>
 
-      <audio id="player" class="d-none nodrag">
-        <source src="https://21253.live.streamtheworld.com/SLAM_AAC.aac" type="audio/mp3">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-  </div>
+                <audio id="player" class="d-none nodrag">
+                    <source src="https://21253.live.streamtheworld.com/SLAM_AAC.aac" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
 
 
-  <script>
-    var slam = new Vue({
-      el: '#slam',
-      created: function () {
-        console.log('Application finished loading');
-        this.updatePlayer();
-        setInterval(this.updatePlayer, 10 * 1000)
-      },
-      data: {
-        url: 'https://api.slam.nl/api/live?brand=slam',
-        coverImage: 'https://cdn.itsaqua.net/logo.png',
-        songName: 'Loading...',
-        artistName: ' ',
-        presenterName: ' ',
-        playButton: './assets/play.svg',
-        stopButton: './assets/pause.svg',
-        currentButton: './assets/play.svg'
-      },
-      methods: {
-        player: function () {
-          var player = document.getElementById('player')
-          if (player.paused) {
-            player.play()
-            this.currentButton = this.stopButton
-          } else {
-            player.pause()
-            this.currentButton = this.playButton
-          }
+        <script>
+            const slam = new Vue({
+                el: '#slam',
+                created() {
+                    console.log('Application finished loading');
+                    this.updatePlayer();
+                    setInterval(this.updatePlayer, 10 * 1000);
+                },
+                data: {
+                    url: 'https://api.slam.nl/api/live?brand=slam',
+                    coverImage: 'https://cdn.itsaqua.net/logo.png',
+                    songName: 'Loading...',
+                    artistName: ' ',
+                    presenterName: ' ',
+                    playButton: './assets/play.svg',
+                    stopButton: './assets/pause.svg',
+                    currentButton: './assets/play.svg'
+                },
+                methods: {
+                    player() {
+                        const player = document.getElementById('player');
+                        if (player.paused) {
+                            player.play();
+                            this.currentButton = this.stopButton;
+                        } else {
+                            player.pause();
+                            this.currentButton = this.playButton;
+                        }
 
-        },
-        updatePlayer: function () {
-            axios.get(this.url).then((response) => {
-                var data = response.data;
-                var obj = data;
-                var stringedjson = JSON.stringify(obj);
+                    },
+                    updatePlayer() {
+                        axios.get(this.url).then((response) => {
+                            const data = response.data;
+                            const obj = data;
+                            const stringedjson = JSON.stringify(obj);
 
-                const json = JSON.parse(stringedjson);
+                            const json = JSON.parse(stringedjson);
 
-                this.coverImage = "https://pbs.twimg.com/profile_images/1268839948511305728/aH8GTwAp_400x400.jpg";
-                this.songName = json.data.song.title;
-                this.artistName = json.data.song.artist;
-                if (json.data.presenter.fullName === undefined) {
-                  this.presenterName = "None"
-                } else {
-                  this.presenterName = json.data.presenter.fullName;
+                            this.coverImage = "https://pbs.twimg.com/profile_images/1268839948511305728/aH8GTwAp_400x400.jpg";
+                            this.songName = json.data.song.title;
+                            this.artistName = json.data.song.artist;
+                            if (json.data.presenter.fullName === undefined) {
+                                this.presenterName = "None"
+                            } else {
+                                this.presenterName = json.data.presenter.fullName;
+                            }
+                            console.log('updated the song');
+                        }).catch((err) => {
+                            console.log(err)
+                        });
+                    }
                 }
-                console.log('updated the song');
-            }).catch((err) => {
-                console.log(err)
             });
-        }
-      }
-    });
-    var player = document.getElementById('player');
-    player.onpause = (event) => {
-      aqua.currentButton = aqua.playButton;
-    };
-    player.onplay = (event) => {
-      aqua.currentButton = aqua.stopButton;
-    };
-  </script>
-</body>
+            const player = document.getElementById('player');
+            player.onpause = (event) => {
+                aqua.currentButton = aqua.playButton;
+            };
+            player.onplay = (event) => {
+                aqua.currentButton = aqua.stopButton;
+            };
+        </script>
+    </body>
 
 </html>

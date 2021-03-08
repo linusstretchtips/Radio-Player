@@ -1,65 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/body.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script src="./node_modules/vue/dist/vue.min.js"></script>
-  <script src="./node_modules/axios/dist/axios.min.js"></script>
-  <title>Aqua Player</title>
-  <base href="index.html">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/body.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="./node_modules/vue/dist/vue.min.js"></script>
+        <script src="./node_modules/axios/dist/axios.min.js"></script>
+        <title>Aqua Player</title>
+        <base href="index.html">
+    </head>
 
-<body>
-  <div id="main" class="container-fluid vw-100 vh-100">
-    <div>
-      <div class="bg-dark row d-flex justify-content-end drag">
-        <button id="appMin" class="btn btn-dark titlebar-button min nodrag">
-          <img src="./assets/minimize.svg" />
-        </button>
-        <button id="appExit" class="btn btn-dark titlebar-button exit nodrag">
-          <img src="./assets/x.svg" />
-        </button>
-      </div>
-      <h1 class="mt-3 text-center">Radio's</h1>
-      <div class="d-flex flex-column">
-        <div class="radioBlock p-2">
-            <img class="radioBlockImg" src="https://cdn.itsaqua.net/logo.png" draggable="false" style="margin-left: unset;margin-top: unset;"></img>            
-          <button class="radioBlockButton mt-4">
-            <a href="aqua.html" class="radioBlockText">Aqua</a>
-          </button>
-          </div>
-      
+    <body>
+        <div id="main" class="container-fluid vw-100 vh-100">
+            <div>
+                <div class="bg-dark row d-flex justify-content-end drag">
+                    <button id="appMin" class="btn btn-dark titlebar-button min nodrag">
+                        <img src="./assets/minimize.svg"/>
+                    </button>
+                    <button id="appExit" class="btn btn-dark titlebar-button exit nodrag">
+                        <img src="./assets/x.svg"/>
+                    </button>
+                </div>
+                <h1 class="mt-3 text-center">Radio's</h1>
+                <div class="d-flex flex-column">
+                    <div class="radioBlock" style="background-image: url('https://cdn.itsaqua.net/logo.png');">
+                        <div class="radioBlockWrapper">
+                            <button class="radioBlockButton mt-4">
+                                <a href="aqua.html" class="radioBlockText">Aqua</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-2">
+                    <a href="aqua.html">Aqua</a>
+                </div>
+                <div class="p-2">
+                    <a href="slam.html">SLAM!</a>
+                </div>
+                <div class="p-2">
+                    <a href="sr.html">Simulator Radio</a>
+                </div>
+                <div class="p-2">
+                    <a href="tfm.html">Truckers FM</a>
+                </div>
+                <div class="p-2">
+                    <a href="caz.html">Caz FM</a>
+                </div>
+            </div>
         </div>
-
-
-
-
-
-
-
-
-        
-        <div class="p-2">
-          <a href="aqua.html">Aqua</a>
-        </div>
-        <div class="p-2">
-          <a href="slam.html">SLAM!</a>
-        </div>
-        <div class="p-2">
-          <a href="sr.html">Simulator Radio</a>
-        </div>
-        <div class="p-2">
-          <a href="tfm.html">Truckers FM</a>
-        </div>
-        <div class="p-2">
-          <a href="caz.html">Caz FM</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
+    </body>
 
 </html>

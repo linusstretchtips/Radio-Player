@@ -1,84 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/body.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script src="./node_modules/vue/dist/vue.min.js"></script>
-  <script src="./node_modules/axios/dist/axios.min.js"></script>
-  <title>Aqua Player</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/body.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="./node_modules/vue/dist/vue.min.js"></script>
+        <script src="./node_modules/axios/dist/axios.min.js"></script>
+        <title>Aqua Player</title>
+    </head>
 
-<body>
-  <div id="sr" class="container-fluid vw-100 vh-100 sr">
-    <div>
-      <div class="bg-dark row d-flex justify-content-end drag">
-        <button id="appMin" class="btn btn-dark titlebar-button min nodrag">
-          <img src="./assets/minimize.svg" />
-        </button>
-        <button id="appExit" class="btn btn-dark titlebar-button exit nodrag">
-          <img src="./assets/x.svg" />
-        </button>
-      </div>
-      <a href="index.html"><img src="./assets/back.svg" alt="Go Back" /></a>
-      <h1 class="text-center mt-4">Simulator Radio</h1>
-      <div class="image d-flex ">
-        <img v-bind:src="coverImage" class="image-thumbnail mx-auto w-50 rounded" />
-      </div>
-      <div class="text-bold text-center mt-5 ">{{ songName }}</div>
-      <div class="text-right text-bold text-center ">{{ artistName }}</div>
-      <div class="d-flex ">
-        <button v-on:click="player" class="btn btn-outline-dark btn-lg mx-auto mt-4">
-          <img v-bind:src="currentButton">
-        </button>
-      </div>
+    <body>
+        <div id="sr" class="container-fluid vw-100 vh-100 sr">
+            <div>
+                <div class="bg-dark row d-flex justify-content-end drag">
+                    <button id="appMin" class="btn btn-dark titlebar-button min nodrag">
+                        <img src="./assets/minimize.svg"/>
+                    </button>
+                    <button id="appExit" class="btn btn-dark titlebar-button exit nodrag">
+                        <img src="./assets/x.svg"/>
+                    </button>
+                </div>
+                <a href="index.html"><img src="./assets/back.svg" alt="Go Back"/></a>
+                <h1 class="text-center mt-4">Simulator Radio</h1>
+                <div class="image d-flex ">
+                    <img v-bind:src="coverImage" class="image-thumbnail mx-auto w-50 rounded"/>
+                </div>
+                <div class="text-bold text-center mt-5 ">{{ songName }}</div>
+                <div class="text-right text-bold text-center ">{{ artistName }}</div>
+                <div class="d-flex ">
+                    <button v-on:click="player" class="btn btn-outline-dark btn-lg mx-auto mt-4">
+                        <img v-bind:src="currentButton">
+                    </button>
+                </div>
 
-      <audio id="player" class="d-none nodrag">
-        <source src="http://stream.simulatorradio.com" type="audio/mp3">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-  </div>
+                <audio id="player" class="d-none nodrag">
+                    <source src="http://stream.simulatorradio.com" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
 
 
-  <script>
-    var sr = new Vue({
-      el: '#sr',
-      created: function () {
-        console.log('Application finished loading');
-      },
-      data: {
-        coverImage: 'https://cdn-profiles.tunein.com/s302363/images/logog.png?t=151911',
-        songName: 'Simulator Radio',
-        artistName: ' N/A ',
-        playButton: './assets/play.svg',
-        stopButton: './assets/pause.svg',
-        currentButton: './assets/play.svg'
-      },
-      methods: {
-        player: function () {
-          var player = document.getElementById('player')
-          if (player.paused) {
-            player.play()
-            this.currentButton = this.stopButton
-          } else {
-            player.pause()
-            this.currentButton = this.playButton
-          }
+        <script>
+            const sr = new Vue({
+                el: '#sr',
+                created() {
+                    console.log('Application finished loading');
+                },
+                data: {
+                    coverImage: 'https://cdn-profiles.tunein.com/s302363/images/logog.png?t=151911',
+                    songName: 'Simulator Radio',
+                    artistName: ' N/A ',
+                    playButton: './assets/play.svg',
+                    stopButton: './assets/pause.svg',
+                    currentButton: './assets/play.svg'
+                },
+                methods: {
+                    player() {
+                        const player = document.getElementById('player');
+                        if (player.paused) {
+                            player.play();
+                            this.currentButton = this.stopButton;
+                        } else {
+                            player.pause();
+                            this.currentButton = this.playButton;
+                        }
 
-        },
-      }
-    });
-    var player = document.getElementById('player');
-    player.onpause = (event) => {
-      sr.currentButton = sr.playButton;
-    };
-    player.onplay = (event) => {
-      sr.currentButton = sr.stopButton;
-    };
-  </script>
-</body>
+                    },
+                }
+            });
+            const player = document.getElementById('player');
+            player.onpause = (event) => {
+                sr.currentButton = sr.playButton;
+            };
+            player.onplay = (event) => {
+                sr.currentButton = sr.stopButton;
+            };
+        </script>
+    </body>
 
 </html>
